@@ -390,32 +390,6 @@ h1,h2,h3{font-kerning:normal;font-synthesis:none}
 .in .relief .w{opacity:1;filter:none;transform:perspective(520px) translate3d(0,0,0) rotateX(0deg)}
 .settled .relief .w{transform:none;transition:none}
 
-/* the gold words carry the logo's three layers: two hairline echoes settle behind them,
-   and shift a little as the title travels up the screen, like stacked sheets seen in perspective */
-@property --par{syntax:'<number>';inherits:true;initial-value:0}
-.relief .em,.static .em{position:relative;z-index:0;display:inline-block;--st-b:rgba(201,149,90,.38);--st-m:rgba(137,89,26,.5)}
-.sec.dark .relief .em,.static .em{--st-b:rgba(201,149,90,.3);--st-m:rgba(201,149,90,.6)}
-.relief .em::before,.relief .em::after,.static .em::before,.static .em::after{content:attr(data-strata) / "";position:absolute;left:0;top:0;z-index:-1;white-space:nowrap;color:transparent;text-shadow:none;-webkit-text-stroke:max(.75px,.012em) var(--st-b);pointer-events:none}
-.relief .em::after,.static .em::after{-webkit-text-stroke-color:var(--st-m)}
-.relief .em::before,.relief .em::after{opacity:0;transition:opacity 1.1s var(--ease),transform 1.7s var(--ease);transition-delay:calc(var(--d,0)*110ms + var(--wi,0)*55ms + 420ms)}
-.relief .em::before{transform:translate(.36em,-.32em)}
-.relief .em::after{transform:translate(.19em,-.17em)}
-.in .relief .em::before,.static .em::before{opacity:1;transform:translate(.1em,calc(-.09em + var(--par)*.05em))}
-.in .relief .em::after,.static .em::after{opacity:1;transform:translate(.05em,calc(-.045em + var(--par)*.025em))}
-@media (max-width:700px){.relief .em::before,.static .em::before,.band .ln.em::before{display:none}}
-.settled .relief .em::before,.settled .relief .em::after{transition:none}
-@supports (animation-timeline:view()){
-  @media (prefers-reduced-motion:no-preference){.relief .em{animation:relPar linear both;animation-timeline:view()}}
-}
-@keyframes relPar{from{--par:1}to{--par:-1}}
-
-/* hero: the last line's echoes close in as you scroll */
-.band .ln.em{position:relative;z-index:0;--ke:clamp(0,(var(--k,0) - .5)*2,1)}
-.band .ln.em::before,.band .ln.em::after{content:attr(data-strata) / "";position:absolute;left:0;top:0;z-index:-1;white-space:nowrap;color:transparent;text-shadow:none;-webkit-text-stroke:max(.75px,.012em) rgba(201,149,90,.34);pointer-events:none;opacity:var(--ke)}
-.band .ln.em::after{-webkit-text-stroke-color:rgba(201,149,90,.66)}
-.band .ln.em::before{transform:translate(calc(.1em + (1 - var(--ke))*.34em),calc(-.09em - (1 - var(--ke))*.3em))}
-.band .ln.em::after{transform:translate(calc(.05em + (1 - var(--ke))*.18em),calc(-.045em - (1 - var(--ke))*.16em))}
-
 /* hero: the last caption turns from ink to light as the room goes dark behind it */
 .band.adapt{--dk:0}
 .band.ink.adapt{color:color-mix(in srgb,var(--ink),var(--cream) calc(var(--dk)*100%));text-shadow:0 0 2px color-mix(in srgb,rgba(243,235,223,.6),rgba(10,6,4,.9) calc(var(--dk)*100%)),0 2px 12px color-mix(in srgb,rgba(243,235,223,.55),rgba(10,6,4,.7) calc(var(--dk)*100%)),0 8px 40px color-mix(in srgb,rgba(243,235,223,.5),rgba(10,6,4,.75) calc(var(--dk)*100%))}
@@ -701,7 +675,7 @@ html.lenis{scroll-behavior:auto}
         <div class="step rv" style="--d:2"><p class="num">03</p><div><h3><span data-l="fr">On met en ligne.</span><span data-l="en" lang="en">We go live.</span></h3><p><span data-l="fr">À la date prévue, rapide sur téléphone, à votre nom.</span><span data-l="en" lang="en">On the agreed date, fast on phones, in your name.</span></p></div></div>
       </div>
       <div class="figs">
-        <div class="fig rv" style="--d:1"><p class="n"><span class="count" data-to="34" id="figPage">34</span><small><span data-l="fr">Ko</span><span data-l="en" lang="en">KB</span></small></p><p class="k"><span data-l="fr">de code pour toute cette page</span><span data-l="en" lang="en">of code for this whole page</span></p></div>
+        <div class="fig rv" style="--d:1"><p class="n"><span class="count" data-to="33" id="figPage">33</span><small><span data-l="fr">Ko</span><span data-l="en" lang="en">KB</span></small></p><p class="k"><span data-l="fr">de code pour toute cette page</span><span data-l="en" lang="en">of code for this whole page</span></p></div>
         <div class="fig rv" style="--d:2"><p class="n"><span class="count" data-to="856" id="figPhone">856</span><small><span data-l="fr">Ko</span><span data-l="en" lang="en">KB</span></small></p><p class="k"><span data-l="fr">pour le film sur téléphone</span><span data-l="en" lang="en">for the phone film</span></p></div>
         <p class="note rv" style="--d:3"><span data-l="fr">Sur téléphone, le film est une version verticale allégée de moins de 1&nbsp;Mo&#8239;: fluide, et léger sur le forfait.</span><span data-l="en" lang="en">On phones, the film is a lighter vertical cut under 1&nbsp;MB: smooth, and easy on the data plan.</span></p>
         <p class="live rv" style="--d:4" id="liveLoad" aria-live="polite"></p>
@@ -836,7 +810,7 @@ $$('.split').forEach((el, n) => {
   lines.forEach((line, li) => {
     const box = document.createElement('span'); box.className = 'ln'; box.style.setProperty('--i', li);
     if (fx === 'layers') box.style.setProperty('--th', (li * 0.22).toFixed(3));
-    if (em && line === em) { box.classList.add('em'); box.dataset.strata = line; }
+    if (em && line === em) box.classList.add('em');
     vis.appendChild(box);
     const words = line.split(' ');
     words.forEach((w, wi) => {
@@ -863,13 +837,11 @@ function splitWords(node, n) {
       }
       c.replaceWith(frag);
     } else if (c.nodeType === 1) {
-      if (c.classList.contains('em')) { c.dataset.strata = c.textContent.trim(); c.style.setProperty('--wi', n.i); }
       splitWords(c, n);
     }
   }
 }
 $$('.sec h2').forEach(h => { h.classList.add('relief'); $$(':scope > [data-l]', h).forEach(l => splitWords(l, { i: 0 })); });
-$$('.static .em').forEach(e => { e.dataset.strata = e.textContent.trim(); });
 
 /* ---------- hero scrub ---------- */
 const PORTRAIT = matchMedia('(orientation: portrait) and (max-width: 1024px)');
