@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Web 3D · On met votre marque en relief</title>
+<meta name="description" content="Des sites web en 3D où vos clients entrent au lieu de défiler. Prix fixe, date fixe, et tout est à votre nom dès le premier jour. Studio Web 3D, Abidjan.">
+<meta name="theme-color" content="#140F0D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23140F0D'/%3E%3Crect x='19' y='4' width='23' height='23' rx='2' fill='none' stroke='%23F3EBDF' stroke-opacity='.45' stroke-width='1.6'/%3E%3Crect x='12.5' y='11.5' width='23' height='23' rx='2' fill='none' stroke='%23F3EBDF' stroke-opacity='.8' stroke-width='1.6'/%3E%3Crect x='6' y='19' width='23' height='23' rx='2' fill='%23C9955A'/%3E%3C/svg%3E">
+<!-- DEPLOY STEP: replace the two placeholder URLs below with the live absolute URL before zipping -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Studio Web 3D · On met votre marque en relief">
+<meta property="og:description" content="Des sites web en 3D où vos clients entrent au lieu de défiler. Prix fixe, date fixe, tout est à vous.">
+<meta property="og:url" content="https://studioweb3d.com/">
+<meta property="og:image" content="https://studioweb3d.com/assets/hero-ending.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Instrument+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --film:#140F0D;--film-2:#1E1713;--canvas:#F3EBDF;--panel:#EADFCF;
+  --ink:#140F0D;--ink-2:#5E5046;--cream:#F3EBDF;--cream-2:#B8A796;
+  --brass:#C9955A;--brass-hover:#D9A86B;--brass-muted:rgba(201,149,90,.18);
+  --glass:#E6E9EA;--line:#DCCFBE;--line-strong:#B9A892;--line-dark:#2E2520;--line-dark-strong:#5A4A3E;
+  --ease:cubic-bezier(.22,1,.36,1);--ease-io:cubic-bezier(.65,0,.35,1);
+  --tshadow:0 1px 2px rgba(10,6,4,.9),0 3px 14px rgba(10,6,4,.7),0 12px 48px rgba(10,6,4,.75);
+  --f-display:'Instrument Serif',Georgia,serif;--f-body:'Instrument Sans',system-ui,-apple-system,sans-serif;--f-mono:'DM Mono',ui-monospace,monospace;
+  --gutter:clamp(18px,5.5vw,84px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:hidden;overflow-x:clip;background:var(--film);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden;overflow-x:clip;margin:0;background:var(--canvas);color:var(--ink);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;animation:pageIn 1s var(--ease) both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+html[data-lang="fr"] [data-l="en"],html[data-lang="en"] [data-l="fr"]{display:none!important}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;letter-spacing:-.025em}
+em,i{font-style:italic}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:16px;top:-60px;z-index:100;background:var(--brass);color:var(--film);padding:10px 16px;border-radius:999px;font-weight:500;text-decoration:none;transition:top .3s var(--ease)}
+.skip:focus{top:16px}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+main:focus{outline:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 15px/1 var(--f-body);text-decoration:none;border-radius:999px;padding:16px 26px;border:1px solid transparent;cursor:pointer;text-shadow:none;transition:background-color .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease)}
+.btn.primary{background:var(--brass);color:var(--film)}
+.btn.primary:hover{background:var(--brass-hover);transform:translateY(-1px)}
+.btn.ghost{border-color:var(--line-dark-strong);color:var(--cream);background:rgba(20,15,13,.35)}
+.btn.ghost:hover{border-color:var(--cream-2);background:rgba(20,15,13,.6);transform:translateY(-1px)}
+.on-cream .btn.ghost,.sec.cream .btn.ghost{border-color:var(--line-strong);color:var(--ink);background:transparent}
+.on-cream .btn.ghost:hover,.sec.cream .btn.ghost:hover{border-color:var(--ink)}
+.btn.sm{padding:12px 18px;font-size:14px}
+.btn .arr{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+@media (pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+
+/* environment layer */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.env .glow{position:absolute;border-radius:50%;width:90vmax;height:90vmax;left:-30vmax;top:-30vmax;background:radial-gradient(circle,rgba(201,149,90,.10) 0%,rgba(201,149,90,.04) 35%,transparent 62%);animation:drift1 100s var(--ease-io) infinite alternate;animation-delay:-36s}
+.env .glow.g2{left:auto;right:-40vmax;top:40vh;width:70vmax;height:70vmax;background:radial-gradient(circle,rgba(243,235,223,.07) 0%,transparent 60%);animation:drift2 130s var(--ease-io) infinite alternate;animation-delay:-80s}
+@keyframes drift1{to{transform:translate3d(20vmax,24vmax,0) scale(1.12)}}
+@keyframes drift2{to{transform:translate3d(-18vmax,-20vmax,0) scale(.92)}}
+.env .grain{position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.env .mote{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(201,149,90,.7);opacity:0;animation:mote 26s linear infinite}
+@keyframes mote{0%{opacity:0;transform:translate3d(0,0,0)}15%{opacity:.6}85%{opacity:.4}100%{opacity:0;transform:translate3d(30px,-55vh,0)}}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+
+/* the brass line (signature) */
+.ll{position:fixed;top:0;bottom:0;right:24px;width:1px;z-index:45;pointer-events:none}
+.ll::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(201,149,90,.5) 10%,rgba(201,149,90,.25) 90%,transparent);transition:opacity .6s var(--ease)}
+.ll .bead{position:absolute;left:-3px;top:0;width:7px;height:7px;border-radius:50%;background:var(--brass);will-change:transform}
+.ll .bead::after{content:"";position:absolute;inset:-6px;border-radius:50%;box-shadow:0 0 14px 4px rgba(201,149,90,.55);animation:beadPulse 5s var(--ease-io) infinite;animation-delay:-1.4s}
+@keyframes beadPulse{0%,100%{opacity:.35}50%{opacity:1}}
+.ll .read{position:absolute;right:16px;top:-7px;font:400 11px/1 var(--f-mono);letter-spacing:.14em;white-space:nowrap;color:var(--cream-2);background:rgba(20,15,13,.55);border:1px solid rgba(90,74,62,.45);padding:5px 8px;border-radius:8px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:color .5s var(--ease),background-color .5s var(--ease),border-color .5s var(--ease)}
+body.zone-cream .ll .read{color:var(--ink-2);background:rgba(243,235,223,.7);border-color:rgba(185,168,146,.5)}
+@media (max-width:1559px),(max-height:700px){.ll .read{display:none}}
+@media (max-width:720px){.ll{right:7px}}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:26px;padding:14px var(--gutter);color:var(--cream);background:rgba(20,15,13,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(46,37,32,.5);transition:background-color .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease)}
+body.zone-cream .nav{color:var(--ink);background:rgba(243,235,223,.72);border-bottom-color:rgba(220,207,190,.7)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand svg{width:30px;height:30px;flex:none}
+.brand .ring1{stroke:currentColor;opacity:.45}.brand .ring2{stroke:currentColor;opacity:.8}
+.brand span{font:400 21px/1 var(--f-display);letter-spacing:-.01em;white-space:nowrap}
+.nav .cta-nav{white-space:nowrap}
+.nav .links{display:flex;gap:26px}
+.nav .links a{font-size:14px;text-decoration:none;opacity:.85;transition:opacity .3s var(--ease)}
+.nav .links a:hover{opacity:1}
+.lang{display:flex;border:1px solid currentColor;border-radius:999px;padding:3px;opacity:.9}
+.lang button{all:unset;cursor:pointer;font:400 12px/1 var(--f-mono);letter-spacing:.1em;padding:7px 10px;border-radius:999px;color:inherit;opacity:.6;transition:background-color .3s var(--ease),opacity .3s var(--ease)}
+.lang button[aria-pressed="true"]{background:currentColor;opacity:1}
+.lang button[aria-pressed="true"] span{color:var(--film)}
+body.zone-cream .lang button[aria-pressed="true"] span{color:var(--cream)}
+.lang button:focus-visible{outline:2px solid var(--brass)}
+@media (pointer:coarse){.lang button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:0 8px}}
+@media (max-width:980px){.nav .links{display:none}.nav{gap:12px}}
+@media (max-width:560px){.brand span{display:none}.nav .cta-nav{padding:11px 14px}.nav{padding:12px var(--gutter)}}
+
+/* hero */
+.hero{position:relative;height:580vh;z-index:1;background:var(--film);color:var(--cream)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--film)}
+.poster{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s var(--ease);transform:translateZ(0);will-change:transform}
+.stage.video-ready video{opacity:1}
+.stage.video-failed video{display:none}
+.scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(10,6,4,0) 35%,rgba(10,6,4,.55) 100%)}
+.band{position:absolute;top:50%;z-index:3;isolation:isolate;width:min(36vw,560px);transform:translateY(-50%);text-shadow:var(--tshadow);opacity:0;pointer-events:none;--k:0}
+.band.on{pointer-events:auto}
+.band.l{left:var(--gutter)}
+.band.r{right:calc(var(--gutter) + 18px)}
+.band.c{left:50%;transform:translate(-50%,-50%);text-align:center;width:min(60vw,880px)}
+.band.c h2,.band.c .sub{margin-left:auto;margin-right:auto}
+.band.c h2{max-width:none;text-wrap:balance}
+.band.c [data-fx="approach"] .w{transform-origin:50% 100%}
+.band.settle{top:auto;bottom:11vh;transform:none;width:min(36vw,520px)}
+.band::before{content:"";position:absolute;inset:-36% -32%;z-index:-1;pointer-events:none;opacity:calc(.25 + .75*var(--k,1));background:radial-gradient(ellipse 60% 56% at 50% 50%,rgba(10,6,4,var(--sa,.66)) 0%,rgba(10,6,4,calc(var(--sa,.66)*.66)) 46%,rgba(10,6,4,0) 76%)}
+.band .kick{font:400 12px/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--cream-2);opacity:clamp(0,var(--k)*2,1);margin-bottom:20px;width:max-content;max-width:100%}
+/* ink bands: the words sit on the lit glass, dark ink with a soft cream halo */
+.band.ink{color:var(--ink);text-shadow:0 0 2px rgba(243,235,223,.6),0 2px 12px rgba(243,235,223,.55),0 8px 40px rgba(243,235,223,.5)}
+.band.ink::before{inset:-44px -56px;border-radius:48px;background:rgba(243,235,223,var(--sa,.56));filter:blur(40px)}
+.band.ink .sub,.band.ink.settle .sub{color:var(--ink)}
+.band.ink .em{color:#58330F}
+.band.ink .btn.ghost{border-color:rgba(20,15,13,.6);color:var(--ink);background:rgba(243,235,223,.35)}
+.band.ink .btn.ghost:hover{border-color:var(--ink);background:rgba(243,235,223,.6)}
+.band h1{font-size:clamp(52px,7.6vw,124px);line-height:.98;max-width:9ch}
+.band h2{font-size:clamp(40px,5.4vw,86px);line-height:1;max-width:11ch}
+.band.settle h2{font-size:clamp(36px,4.1vw,64px);max-width:none;text-wrap:balance}
+.band .em{color:var(--brass);font-style:italic;white-space:nowrap}
+.band .sub{margin-top:22px;font-size:clamp(17px,1.35vw,21px);line-height:1.5;color:var(--cream);max-width:30ch;--ks:clamp(0,(var(--k) - .4)*2.5,1);opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*10px))}
+.band.settle .sub{max-width:32ch;font-size:clamp(16px,1.2vw,18px);color:var(--cream-2);--ks:clamp(0,(var(--k) - .66)*4,1)}
+.band .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;--kb:clamp(0,(var(--k) - .78)*5,1);opacity:var(--kb);transform:translateY(calc((1 - var(--kb))*12px))}
+.vis .ln{display:block}
+.vis .w{display:inline-block;white-space:nowrap}
+.vis .c{display:inline-block}
+.blurwrap{position:relative;transform:scale(calc(.94 + .06*var(--k)));transform-origin:0 50%}
+.blurwrap .soft{position:absolute;inset:0;filter:blur(10px);opacity:calc(1 - var(--k))}
+.blurwrap .sharp{opacity:var(--k)}
+[data-fx="layers"] .ln{--kl:clamp(0,(var(--k,0) - var(--th,0))*2.4,1);opacity:var(--kl);transform:translateY(calc((1 - var(--kl))*var(--i,0)*-1em))}
+[data-fx="approach"] .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);transform:scale(calc(.82 + .18*var(--kc)));transform-origin:0 100%}
+[data-fx="rise"] .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*28px))}
+.loader{position:absolute;left:50%;top:50%;z-index:5;display:flex;flex-direction:column;align-items:center;gap:14px;transform:translate(-50%,-50%);padding:22px 26px 18px;border-radius:999px;background:rgba(20,15,13,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--brass);pointer-events:none;transition:opacity .8s var(--ease)}
+.loader.done{opacity:0}
+.loader .ring{width:56px;height:56px;transform:rotate(-90deg)}
+.loader .ring circle{transition:stroke-dashoffset .2s linear}
+.loader .lbl{font:400 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cream-2)}
+.cue{position:absolute;left:50%;bottom:26px;z-index:4;display:none;flex-direction:column;align-items:center;gap:10px;transform:translateX(-50%);color:var(--brass);pointer-events:none}
+.cue .ring{width:40px;height:40px;transform:rotate(-90deg)}
+.cue .ring circle{transition:stroke-dashoffset .2s linear}
+.cue .lbl{font:400 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cream-2);background:rgba(20,15,13,.55);border:1px solid rgba(90,74,62,.45);padding:6px 10px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cue .chev{display:none;width:18px;height:18px;animation:chev 2.4s var(--ease-io) infinite;animation-delay:-.6s}
+.cue.loaded,.cue.failed{display:flex}
+.cue.loaded .chev,.cue.failed .chev{display:block}
+@keyframes chev{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
+.static{display:none;position:absolute;inset:0;z-index:3;flex-direction:column;justify-content:flex-end;padding:0 var(--gutter) clamp(40px,8vh,80px);background:linear-gradient(to top,rgba(10,6,4,.94) 0%,rgba(10,6,4,.72) 42%,rgba(10,6,4,.2) 70%,rgba(10,6,4,0) 85%)}
+.static .kick{font:400 12px/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--cream-2);margin-bottom:16px}
+.static h1{font-size:clamp(46px,10.5vw,84px);line-height:.98;max-width:16ch;text-shadow:var(--tshadow)}
+.static h1 .em{color:var(--brass);font-style:italic;white-space:nowrap}
+.static .sub{margin-top:16px;font-size:17px;line-height:1.5;max-width:34ch;color:var(--cream);text-shadow:var(--tshadow)}
+.static .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+@media (max-height:560px){.cue{display:none!important}}
+@media (max-width:720px),(orientation:portrait) and (max-width:1024px){
+  .band,.band.l,.band.r,.band.c{left:var(--gutter);right:var(--gutter);width:auto;top:auto;bottom:8vh;transform:none;text-align:left}
+  .band .kick{display:none}
+  .band.c h2,.band.c .sub{margin-left:0;margin-right:0}
+  .band h1{font-size:clamp(44px,12vw,68px)}
+  .band h2,.band.settle h2{font-size:clamp(34px,9.6vw,54px)}
+  .band .sub,.band.settle .sub{max-width:34ch}
+  .band::before{inset:-28px -22px}
+  .band.ink::before{inset:-30px -26px;filter:blur(28px)}
+  .cue{bottom:16px}
+}
+
+/* static hero gate: these five queries match the JS GATES exactly */
+@media (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce){
+  .hero{height:auto}
+  .stage{position:relative;height:100vh;height:100svh;min-height:560px}
+  .band,.hero video,.cue,.loader{display:none}
+  .static{display:flex}
+  .poster{background-image:url("assets/hero-static.jpg")}
+}
+@media (prefers-reduced-motion: reduce) and (orientation: portrait) and (max-width: 1024px){
+  .poster{background-image:url("assets/hero-static-p.jpg");background-size:auto 128%;background-position:center bottom}
+}
+
+/* sections */
+main{position:relative;z-index:1}
+.sec{position:relative;padding:clamp(100px,16vh,180px) var(--gutter)}
+.sec.cream{background:var(--canvas);color:var(--ink)}
+.sec.dark{background:var(--film);color:var(--cream)}
+.wrap{max-width:1240px;margin:0 auto}
+.kicker{font:400 12px/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:14px}
+.sec.dark .kicker{color:var(--cream-2)}
+.kicker .lay{width:26px;height:18px;flex:none;overflow:visible}
+.kicker .lay rect{fill:none;stroke:var(--brass);stroke-width:1.2;transition:transform 1.1s var(--ease)}
+.kicker .lay .a{transform:translate(8px,0)}.kicker .lay .b{transform:translate(4px,0)}
+.in .kicker .lay .a{transform:translate(8px,-5px)}.in .kicker .lay .b{transform:translate(4px,-2.5px)}
+.sec h2{font-size:clamp(42px,5.6vw,88px);line-height:.98;margin:26px 0 0;max-width:14ch}
+.sec h2 .em{color:var(--brass);font-style:italic;white-space:nowrap}
+.lede{margin-top:24px;font-size:clamp(18px,1.4vw,21px);line-height:1.55;color:var(--ink-2);max-width:48ch}
+.sec.dark .lede{color:var(--cream-2)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--d,0)*110ms)}
+.in .rv{opacity:1;transform:none}
+.settled .rv{transition-delay:0s!important}
+
+/* S1 showroom */
+.show{margin-top:72px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.cell{margin:0}
+.tile{display:block;position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--film);color:var(--cream);text-decoration:none;opacity:0;transform:translateY(40px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease);transition-delay:calc(var(--d,0)*150ms)}
+.showroom.in .tile{opacity:1;transform:none}
+.showroom.settled .tile{transition-delay:0s!important}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 2.4s var(--ease)}
+.showroom.in .tile img{transform:scale(1)}
+.tile:hover img{transform:scale(1.04);transition-duration:1.2s}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,6,4,.8) 0%,rgba(10,6,4,.25) 32%,rgba(10,6,4,0) 55%)}
+.tile .t{position:absolute;left:24px;right:24px;bottom:22px;z-index:1;text-shadow:var(--tshadow)}
+.tile .n{font:400 12px/1 var(--f-mono);letter-spacing:.16em;color:var(--brass)}
+.tile h3{font-size:clamp(40px,3.8vw,64px);line-height:1;margin-top:10px}
+.cell figcaption{margin-top:16px;font-size:16px;line-height:1.5;color:var(--ink-2);max-width:32ch}
+@media (max-width:900px){.show{grid-template-columns:1fr;max-width:520px}}
+
+/* S2 promises */
+.rows{margin-top:72px;border-top:1px solid var(--line)}
+.prow{display:grid;grid-template-columns:minmax(0,.9fr) 64px minmax(0,1.2fr);align-items:baseline;gap:0 28px;padding:44px 0;border-bottom:1px solid var(--line)}
+.prow .fear{position:relative;font:400 13px/1.6 var(--f-mono);color:var(--ink-2);max-width:40ch;opacity:0;transform:translateX(-22px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.prow .fear .struck{position:absolute;inset:0;color:transparent;text-decoration:line-through;text-decoration-color:rgba(94,80,70,.8);text-decoration-thickness:1px;opacity:0;transition:opacity 1.2s var(--ease) .7s}
+.prow.in .fear .struck{opacity:1}
+.prow .arrow{align-self:center;width:44px;height:10px;color:var(--brass);transform:scaleX(0);transform-origin:0 50%;transition:transform 1s var(--ease) .45s}
+.prow.in .arrow{transform:scaleX(1)}
+.prow .prom{opacity:0;transform:translateX(22px);transition:opacity 1s var(--ease) .18s,transform 1s var(--ease) .18s}
+.prow.in .fear,.prow.in .prom{opacity:1;transform:none}
+.prow h3{font-size:clamp(36px,4vw,60px);line-height:1}
+.prow .p{margin-top:14px;color:var(--ink-2);max-width:44ch;font-size:17px}
+@media (max-width:820px){.prow{grid-template-columns:1fr;gap:16px}.prow .arrow{display:none}}
+
+/* S3 hold */
+.try .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+.try .kicker{justify-content:center}
+.try h2{margin-left:auto;margin-right:auto}
+.try .lede{margin-left:auto;margin-right:auto}
+.hold-stage{--p:0;position:relative;margin-top:60px;width:min(680px,100%);aspect-ratio:16/10;border-radius:8px;background:var(--film);border:1px solid var(--line);overflow:hidden;perspective:1100px}
+.hold-stage .sky{position:absolute;left:28%;right:28%;top:-10%;height:120%;background:linear-gradient(to bottom,rgba(201,149,90,.6),rgba(201,149,90,.14) 55%,rgba(201,149,90,0));filter:blur(18px);opacity:calc(var(--p)*.95);transform:scaleX(calc(.4 + var(--p)*1.2))}
+.hold-stage .aperture{position:absolute;left:50%;top:0;width:34%;height:6px;background:var(--brass);border-radius:0 0 4px 4px;transform:translateX(-50%) scaleX(calc(.08 + var(--p)*.92));opacity:calc(.35 + var(--p)*.65)}
+.mock{position:absolute;inset:14% 16% 12%;transform-style:preserve-3d;transform:rotateX(calc(var(--p)*30deg)) rotateZ(calc(var(--p)*-7deg)) scale(calc(1 - var(--p)*.05))}
+.layer{position:absolute;left:0;right:0;border-radius:6px;background:#2A211C;transform:translateZ(calc(var(--p)*var(--z,0px)));box-shadow:0 0 0 1px rgba(243,235,223,.05)}
+.layer::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,#F3EBDF,#DCCFBE);opacity:calc(var(--p)*.94)}
+.layer.l1{top:0;height:10%;--z:28px}
+.layer.l2{top:16%;height:42%;--z:72px}
+.layer.l3{top:64%;height:36%;background:none;box-shadow:none;--z:116px;display:grid;grid-template-columns:repeat(3,1fr);gap:8%}
+.layer.l3::after{display:none}
+.layer.l3 i{position:relative;border-radius:6px;background:#2A211C}
+.layer.l3 i::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,#F3EBDF,#C9955A);opacity:calc(var(--p)*.94)}
+.layer .shade{position:absolute;inset:auto 6% -18% 6%;height:30%;border-radius:50%;background:rgba(0,0,0,.6);filter:blur(14px);opacity:calc(var(--p)*.8);transform:translateZ(-1px)}
+.hold-btn{all:unset;position:relative;margin-top:36px;display:inline-flex;align-items:center;gap:14px;padding:14px 24px 14px 14px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none;font:500 15px/1 var(--f-body);color:var(--ink);transition:border-color .35s var(--ease),transform .35s var(--ease)}
+.hold-btn:hover{border-color:var(--ink)}
+.hold-btn.holding{transform:scale(.98)}
+.hold-btn:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.hold-btn svg{width:34px;height:34px;transform:rotate(-90deg)}
+.hold-btn svg .track{stroke:var(--line)}
+.hold-btn svg .fill{stroke:var(--brass)}
+@media (pointer:coarse){.hold-btn{min-height:44px}}
+.hold-lines{margin-top:34px;display:grid;gap:6px;min-height:130px}
+.hold-lines p{font:400 clamp(26px,2.6vw,36px)/1.2 var(--f-display);letter-spacing:-.02em;opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.hold-lines p:nth-child(2){transition-delay:.35s;font-style:italic}
+.hold-lines p:nth-child(3){transition-delay:.7s;color:var(--brass)}
+.try.done .hold-lines p{opacity:1;transform:none}
+.replay{all:unset;cursor:pointer;margin-top:14px;font:400 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);opacity:0;transition:opacity .6s var(--ease) 1.2s;padding:10px}
+.try.done .replay{opacity:1}
+.replay:focus-visible{outline:2px solid var(--brass)}
+.try .hold-stage{background:none;border:0;border-radius:0}
+.try .layer.l1,.try .layer.l2,.try .layer.l3 i{box-shadow:0 0 0 1px rgba(243,235,223,.14)}
+.try .hold-btn{border-color:var(--line-dark-strong);color:var(--cream)}
+.try .hold-btn:hover{border-color:var(--cream-2)}
+.try .hold-btn svg .track{stroke:var(--line-dark-strong)}
+.try .replay{color:var(--cream-2)}
+@media (max-width:600px){.try .hold-stage .sky{left:33%;right:33%}}
+
+/* S4 packages */
+.plans{margin-top:72px;border-top:1px solid var(--line)}
+.plan{position:relative;display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,.9fr) minmax(0,1.2fr) auto;gap:0 32px;align-items:baseline;padding:44px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease),background-color .4s var(--ease);transition-delay:calc(var(--d,0)*130ms)}
+.packs.in .plan{opacity:1;transform:none}
+.packs.settled .plan{transition-delay:0s!important}
+.plan .name{display:flex;flex-direction:column;gap:12px}
+.plan h3{font-size:clamp(34px,3.4vw,52px);line-height:1}
+.plan .tag{align-self:flex-start;font:400 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brass);border:1px solid rgba(201,149,90,.5);padding:6px 10px;border-radius:999px}
+.plan .price{display:flex;flex-direction:column;gap:6px}
+.plan .from{font:400 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.plan .amt{font:400 clamp(40px,4.6vw,72px)/1 var(--f-display);letter-spacing:-.03em;white-space:nowrap}
+.plan .amt small{font:400 13px/1 var(--f-mono);letter-spacing:.1em;color:var(--ink-2);margin-left:10px;vertical-align:middle}
+.plan .desc{font-size:17px;color:var(--ink);max-width:40ch}
+.plan .det{margin-top:12px;font:400 13px/1.7 var(--f-mono);color:var(--ink-2);max-width:48ch}
+.plan .btn{align-self:center}
+.shared{margin-top:36px;color:var(--ink-2);font-size:15px;max-width:72ch;line-height:1.6}
+@media (max-width:1000px){.plan{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 28px}.plan .btn{grid-column:1/-1;justify-self:start}}
+@media (max-width:600px){.plan{grid-template-columns:1fr}}
+
+/* S5 method + speed */
+.method .grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:72px;align-items:start;margin-top:72px}
+.steps{display:grid;gap:0;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:90px minmax(0,1fr);gap:24px;align-items:baseline;padding:32px 0;border-bottom:1px solid var(--line)}
+.step .num{font:400 clamp(40px,4vw,60px)/1 var(--f-display);color:var(--brass);letter-spacing:-.03em}
+.step h3{font-size:clamp(26px,2.4vw,34px);line-height:1.1}
+.step p{margin-top:10px;color:var(--ink-2);max-width:44ch}
+.figs{display:grid;gap:34px;padding-top:8px}
+.fig{border-left:1px solid var(--line-strong);padding-left:24px}
+.fig .n{font:400 clamp(56px,6.5vw,96px)/1 var(--f-display);letter-spacing:-.04em}
+.fig .n small{font:400 13px/1 var(--f-mono);letter-spacing:.08em;color:var(--ink-2);margin-left:10px}
+.fig .k{margin-top:8px;font:400 12px/1.5 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.method .live{font:400 13px/1.6 var(--f-mono);color:var(--brass);min-height:1.6em}
+.method .note{color:var(--ink-2);font-size:15px;line-height:1.6;max-width:36ch}
+@media (max-width:900px){.method .grid{grid-template-columns:1fr;gap:48px}}
+
+/* S6 faq */
+.faq .grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px}
+.faq .head{position:sticky;top:120px;align-self:start}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:28px 0;font:400 clamp(22px,2vw,28px)/1.25 var(--f-display);letter-spacing:-.015em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .plus{position:relative;flex:none;width:14px;height:14px}
+.faq summary .plus::before,.faq summary .plus::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--brass);transition:transform .45s var(--ease)}
+.faq summary .plus::after{transform:rotate(90deg)}
+.faq details[open] summary .plus::after{transform:rotate(0deg)}
+.faq details .a{padding:0 0 28px;color:var(--ink-2);max-width:58ch;animation:ansIn .6s var(--ease)}
+@keyframes ansIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.faq details .rv{transition-delay:calc(var(--d,0)*80ms)}
+@media (max-width:900px){.faq .grid{grid-template-columns:1fr;gap:36px}.faq .head{position:static}}
+
+/* S7 start */
+.start{overflow:hidden;padding-top:clamp(120px,18vh,200px);padding-bottom:clamp(120px,18vh,200px)}
+.start-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.start::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,var(--film) 0%,rgba(20,15,13,.5) 30%,rgba(20,15,13,.7) 70%,var(--film) 100%)}
+.start .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:start}
+.start h2{max-width:12ch}
+.start .direct{margin-top:28px;font:400 13px/1.6 var(--f-mono);color:var(--cream-2)}
+.start .direct a{white-space:nowrap;color:var(--brass);text-decoration:none;border-bottom:1px solid rgba(201,149,90,.4)}
+.form{opacity:0;transform:scale(.97) translateY(16px);transition:opacity 1.1s var(--ease) .2s,transform 1.1s var(--ease) .2s}
+.start.in .form{opacity:1;transform:none}
+.field{display:grid;gap:10px;margin-bottom:28px}
+.field label{font:400 12px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--cream-2)}
+.field input,.field select{width:100%;font:400 clamp(18px,1.4vw,21px)/1.3 var(--f-body);color:var(--cream);background-color:transparent;border:0;border-bottom:1px solid var(--line-dark-strong);border-radius:0;padding:12px 0;transition:border-color .3s var(--ease),box-shadow .3s var(--ease);appearance:none;-webkit-appearance:none}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23B8A796' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;padding-right:30px}
+.field input::placeholder{color:#7E6E60}
+.field input:hover,.field select:hover{border-bottom-color:var(--cream-2)}
+.field input:focus,.field select:focus{outline:none;border-bottom-color:var(--brass);box-shadow:0 1px 0 0 var(--brass)}
+.field .err{font-size:13px;color:#E8A98C;min-height:0}
+.form .btn{width:auto;margin-top:14px;padding:18px 30px}
+.form .ok{margin-top:16px;font-size:15px;color:var(--brass);min-height:1.4em}
+@media (max-width:900px){.start .wrap{grid-template-columns:1fr;gap:40px}}
+
+/* footer */
+.foot{position:relative;z-index:1;padding:56px var(--gutter) 40px;background:var(--film);color:var(--cream);border-top:1px solid var(--line-dark)}
+.foot .wrap{display:grid;grid-template-columns:1fr auto;gap:24px 40px;align-items:baseline}
+.foot .brand{margin:0}
+.foot .tag{color:var(--cream-2);font-size:15px;margin-top:10px}
+.foot .wa{color:var(--cream);text-decoration:none;white-space:nowrap;border-bottom:1px solid var(--line-dark-strong);font-size:15px}
+.foot .small{grid-column:1/-1;font:400 12px/1.6 var(--f-mono);color:var(--cream-2);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media (max-width:640px){.foot .wrap{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .rv,.tile,.plan,.form,.prow .fear,.prow .prom,.hold-lines p,.replay{opacity:1!important;transform:none!important}
+  .prow .fear .struck{opacity:1!important}
+  .prow .arrow{transform:none!important}
+  .tile img{transform:none!important}
+  .kicker .lay .a{transform:translate(8px,-5px)!important}.kicker .lay .b{transform:translate(4px,-2.5px)!important}
+  .env .mote{display:none}
+}
+</style>
+<noscript><style>
+.hero{height:auto}.stage{position:relative;height:100vh}.band,.hero video,.cue{display:none}.static{display:flex}.poster{background-image:url("assets/hero-static.jpg")}
+.rv,.tile,.plan,.form,.prow .fear,.prow .prom{opacity:1;transform:none}
+</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main"><span data-l="fr">Aller au contenu</span><span data-l="en" lang="en">Skip to content</span></a>
+
+<div class="env" aria-hidden="true">
+  <div class="glow"></div><div class="glow g2"></div>
+  <div class="grain"></div>
+  <div class="motes"></div>
+</div>
+
+<div class="ll" aria-hidden="true"><div class="bead"><span class="read">RELIEF 00 / 40</span></div></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Studio Web 3D">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ring1" x="19" y="4" width="23" height="23" rx="2" fill="none" stroke-width="1.6"/><rect class="ring2" x="12.5" y="11.5" width="23" height="23" rx="2" fill="none" stroke-width="1.6"/><rect x="6" y="19" width="23" height="23" rx="2" fill="#C9955A"/></svg>
+    <span>Studio Web 3D</span>
+  </a>
+  <nav class="links" aria-label="Menu">
+    <a href="#pourqui"><span data-l="fr">Pour qui</span><span data-l="en" lang="en">Who it’s for</span></a>
+    <a href="#offres"><span data-l="fr">Offres</span><span data-l="en" lang="en">Packages</span></a>
+    <a href="#questions"><span data-l="fr">Questions</span><span data-l="en" lang="en">FAQ</span></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Langue / Language">
+    <button type="button" data-set-lang="fr" aria-pressed="true"><span>FR</span></button>
+    <button type="button" data-set-lang="en" aria-pressed="false"><span>EN</span></button>
+  </div>
+  <a class="btn primary sm cta-nav" href="#start"><span data-l="fr">Ma première image</span><span data-l="en" lang="en">My first image</span></a>
+</header>
+
+<main id="main" tabindex="-1">
+
+<section class="hero" id="top" aria-label="Studio Web 3D">
+  <div class="stage" id="stage">
+    <div class="poster" id="poster"></div>
+    <video id="hero" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim"></div>
+
+    <div class="band l" data-a="0" data-b="0.21" style="--sa:.6">
+      <div data-l="fr">
+        <p class="kick">Studio Web 3D · Abidjan</p>
+        <div class="blurwrap"><h1 class="soft" aria-hidden="true">Une page plate.</h1><h1 class="sharp">Une page plate.</h1></div>
+        <p class="sub">C’est là que tout commence.</p>
+      </div>
+      <div data-l="en" lang="en">
+        <p class="kick">Studio Web 3D · Abidjan</p>
+        <div class="blurwrap"><h1 class="soft" aria-hidden="true">A flat page.</h1><h1 class="sharp">A flat page.</h1></div>
+        <p class="sub">That’s where it starts.</p>
+      </div>
+    </div>
+
+    <div class="band c ink" data-a="0.24" data-b="0.49" style="--sa:.58">
+      <div data-l="fr">
+        <h2 class="split" data-fx="layers">Puis elle prend|de la profondeur.</h2>
+        <p class="sub">Lumière, matière, mouvement.</p>
+      </div>
+      <div data-l="en" lang="en">
+        <h2 class="split" data-fx="layers">Then it|gains depth.</h2>
+        <p class="sub">Light, texture, motion.</p>
+      </div>
+    </div>
+
+    <div class="band c ink" data-a="0.52" data-b="0.77" style="--sa:.58">
+      <div data-l="fr">
+        <h2 class="split" data-fx="approach">Vos clients ne font pas que passer.|Ils entrent.</h2>
+        <p class="sub">Et ils restent.</p>
+      </div>
+      <div data-l="en" lang="en">
+        <h2 class="split" data-fx="approach">Your customers don’t scroll past.|They step in.</h2>
+        <p class="sub">And they stay.</p>
+      </div>
+    </div>
+
+    <div class="band l settle ink" data-a="0.80" data-b="1" style="--sa:.6">
+      <div data-l="fr">
+        <h2 class="split" data-fx="rise" data-em="en relief.">On met votre marque|en relief.</h2>
+        <p class="sub">Des sites en 3D à prix fixe, livrés à date fixe. Le code, le domaine et l’hébergement sont à votre nom dès le premier jour.</p>
+        <div class="row"><a class="btn primary" href="#start">Recevoir ma première image <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="#offres">Voir les offres</a></div>
+      </div>
+      <div data-l="en" lang="en">
+        <h2 class="split" data-fx="rise" data-em="depth.">We give your brand|depth.</h2>
+        <p class="sub">3D websites at a fixed price, delivered on a fixed date. The code, the domain, and the hosting are in your name from day one.</p>
+        <div class="row"><a class="btn primary" href="#start">Get my first image <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="#offres">See the packages</a></div>
+      </div>
+    </div>
+
+    <div class="static">
+      <div data-l="fr">
+        <p class="kick">Studio Web 3D · Abidjan</p>
+        <h1>On met votre marque <span class="em">en relief.</span></h1>
+        <p class="sub">Des sites en 3D à prix fixe, livrés à date fixe. Tout est à votre nom dès le premier jour.</p>
+        <div class="row"><a class="btn primary" href="#start">Recevoir ma première image <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="#offres">Voir les offres</a></div>
+      </div>
+      <div data-l="en" lang="en">
+        <p class="kick">Studio Web 3D · Abidjan</p>
+        <h1>We give your brand <span class="em">depth.</span></h1>
+        <p class="sub">3D websites at a fixed price, delivered on a fixed date. Everything is in your name from day one.</p>
+        <div class="row"><a class="btn primary" href="#start">Get my first image <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="#offres">See the packages</a></div>
+      </div>
+    </div>
+
+    <div class="loader" id="loader" aria-hidden="true">
+      <svg class="ring" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(201,149,90,.25)" stroke-width="2"/><circle id="ringFill" cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="126" stroke-dashoffset="126" stroke-linecap="round"/></svg>
+      <span class="lbl"><span data-l="fr">Chargement du film</span><span data-l="en" lang="en">Loading the film</span></span>
+    </div>
+    <div class="cue" id="cue">
+      <svg class="chev" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 6l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span class="lbl"><span data-l="fr">Défilez pour entrer</span><span data-l="en" lang="en">Scroll to step in</span></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec cream showroom" id="pourqui">
+  <div class="wrap">
+    <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">Pour qui</span><span data-l="en" lang="en">Who it’s for</span></p>
+    <h2 class="rv" style="--d:1"><span data-l="fr">Trois choses qu’on sait mettre <span class="em">en relief.</span></span><span data-l="en" lang="en">Three things we know how to lift <span class="em">off the page.</span></span></h2>
+    <div class="show">
+      <figure class="cell" style="--d:0">
+        <a class="tile" href="#start">
+          <img src="assets/show-product.jpg" alt="" loading="lazy" width="1200" height="1500">
+          <div class="t"><p class="n">01</p><h3><span data-l="fr">Le produit.</span><span data-l="en" lang="en">The product.</span></h3></div>
+        </a>
+        <figcaption class="rv" style="--d:2"><span data-l="fr">Un parfum, un bijou, une paire de sneakers. Le produit coule, tombe, s’assemble sous les yeux du client.</span><span data-l="en" lang="en">A perfume, a piece of jewelry, a pair of sneakers. The product pours, falls, or assembles in front of the customer.</span></figcaption>
+      </figure>
+      <figure class="cell" style="--d:1">
+        <a class="tile" href="#start">
+          <img src="assets/show-place.jpg" alt="" loading="lazy" width="1200" height="1500">
+          <div class="t"><p class="n">02</p><h3><span data-l="fr">Le lieu.</span><span data-l="en" lang="en">The place.</span></h3></div>
+        </a>
+        <figcaption class="rv" style="--d:3"><span data-l="fr">Un hôtel, un restaurant, une clinique. On entre dans vos espaces avant d’y mettre les pieds.</span><span data-l="en" lang="en">A hotel, a restaurant, a clinic. People walk through your space before they set foot in it.</span></figcaption>
+      </figure>
+      <figure class="cell" style="--d:2">
+        <a class="tile" href="#start">
+          <img src="assets/show-brand.jpg" alt="" loading="lazy" width="1200" height="1500">
+          <div class="t"><p class="n">03</p><h3><span data-l="fr">La marque.</span><span data-l="en" lang="en">The brand.</span></h3></div>
+        </a>
+        <figcaption class="rv" style="--d:4"><span data-l="fr">Une start-up, une app, une fintech. Un monde abstrait de lumière et de matière, à l’image de votre marque.</span><span data-l="en" lang="en">A startup, an app, a fintech. An abstract world of light and texture, in your brand’s image.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec cream promises" id="promesses">
+  <div class="wrap">
+    <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">Par écrit</span><span data-l="en" lang="en">In writing</span></p>
+    <h2 class="rv" style="--d:1"><span data-l="fr">Les trois peurs, réglées <span class="em">noir sur blanc.</span></span><span data-l="en" lang="en">The three fears, settled <span class="em">in black and white.</span></span></h2>
+    <div class="rows">
+      <div class="prow">
+        <p class="fear"><span class="q"><span data-l="fr">«&nbsp;Ça devait prendre un mois. Ça fait six mois.&nbsp;»</span><span data-l="en" lang="en">“It was supposed to take a month. It’s been six.”</span></span><span class="q struck" aria-hidden="true"><span data-l="fr">«&nbsp;Ça devait prendre un mois. Ça fait six mois.&nbsp;»</span><span data-l="en" lang="en">“It was supposed to take a month. It’s been six.”</span></span></p>
+        <svg class="arrow" viewBox="0 0 44 10" aria-hidden="true"><path d="M0 5H42M37 1l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="prom">
+          <h3><span data-l="fr">Date fixe.</span><span data-l="en" lang="en">Fixed date.</span></h3>
+          <p class="p"><span data-l="fr">La date de mise en ligne est écrite dans le contrat. Chaque semaine, vous voyez où on en est.</span><span data-l="en" lang="en">The launch date is written in the contract. Every week, you see exactly where things stand.</span></p>
+        </div>
+      </div>
+      <div class="prow">
+        <p class="fear"><span class="q"><span data-l="fr">«&nbsp;Après l’acompte, plus de nouvelles.&nbsp;»</span><span data-l="en" lang="en">“After the deposit, they went silent.”</span></span><span class="q struck" aria-hidden="true"><span data-l="fr">«&nbsp;Après l’acompte, plus de nouvelles.&nbsp;»</span><span data-l="en" lang="en">“After the deposit, they went silent.”</span></span></p>
+        <svg class="arrow" viewBox="0 0 44 10" aria-hidden="true"><path d="M0 5H42M37 1l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="prom">
+          <h3><span data-l="fr">Une vraie réponse.</span><span data-l="en" lang="en">A real answer.</span></h3>
+          <p class="p"><span data-l="fr">Vous avez notre WhatsApp direct. On vous répond le jour même, du lundi au samedi.</span><span data-l="en" lang="en">You get our direct WhatsApp. We reply the same day, Monday to Saturday.</span></p>
+        </div>
+      </div>
+      <div class="prow">
+        <p class="fear"><span class="q"><span data-l="fr">«&nbsp;Pour récupérer mon propre site, ils demandent encore de l’argent.&nbsp;»</span><span data-l="en" lang="en">“They want more money just to give me my own site.”</span></span><span class="q struck" aria-hidden="true"><span data-l="fr">«&nbsp;Pour récupérer mon propre site, ils demandent encore de l’argent.&nbsp;»</span><span data-l="en" lang="en">“They want more money just to give me my own site.”</span></span></p>
+        <svg class="arrow" viewBox="0 0 44 10" aria-hidden="true"><path d="M0 5H42M37 1l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="prom">
+          <h3><span data-l="fr">Tout est à vous.</span><span data-l="en" lang="en">You own it all.</span></h3>
+          <p class="p"><span data-l="fr">Domaine, hébergement et code à votre nom dès le premier jour. Partir ne coûte rien.</span><span data-l="en" lang="en">Domain, hosting, and code in your name from day one. Leaving costs nothing.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark try" id="essai">
+  <div class="wrap">
+    <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">Essayez</span><span data-l="en" lang="en">Try it</span></p>
+    <h2 class="rv" style="--d:1"><span data-l="fr">Mettez cette page <span class="em">en relief.</span></span><span data-l="en" lang="en">Give this page <span class="em">depth.</span></span></h2>
+    <p class="lede rv" style="--d:2"><span data-l="fr">Voici un site plat. Maintenez appuyé et regardez-le prendre de la profondeur.</span><span data-l="en" lang="en">Here is a flat website. Press and hold, and watch it gain depth.</span></p>
+    <div class="hold-stage rv" style="--d:3" id="holdStage" aria-hidden="true">
+      <div class="sky"></div>
+      <div class="aperture"></div>
+      <div class="mock">
+        <div class="layer l1"><span class="shade"></span></div>
+        <div class="layer l2"><span class="shade"></span></div>
+        <div class="layer l3"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+    <button type="button" class="hold-btn rv" style="--d:4" id="holdBtn">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="track" cx="24" cy="24" r="20" fill="none" stroke-width="2"/><circle class="fill" id="holdFill" cx="24" cy="24" r="20" fill="none" stroke-width="2" stroke-dasharray="126" stroke-dashoffset="126" stroke-linecap="round"/></svg>
+      <span class="hold-label"><span data-l="fr">Maintenez appuyé</span><span data-l="en" lang="en">Press and hold</span></span>
+    </button>
+    <div class="hold-lines" aria-live="polite">
+      <p><span data-l="fr">Plat, on le lit.</span><span data-l="en" lang="en">Flat, you read it.</span></p>
+      <p><span data-l="fr">En relief, on le vit.</span><span data-l="en" lang="en">With depth, you feel it.</span></p>
+      <p><span data-l="fr">C’est ce qu’on construit pour vous.</span><span data-l="en" lang="en">That’s what we build for you.</span></p>
+    </div>
+    <button type="button" class="replay" id="replay"><span data-l="fr">Recommencer</span><span data-l="en" lang="en">Try again</span></button>
+  </div>
+</section>
+
+<section class="sec cream packs" id="offres">
+  <div class="wrap">
+    <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">Les offres</span><span data-l="en" lang="en">Packages</span></p>
+    <h2 class="rv" style="--d:1"><span data-l="fr">Choisissez jusqu’où <span class="em">on va.</span></span><span data-l="en" lang="en">Choose how far <span class="em">we go.</span></span></h2>
+    <div class="plans">
+      <article class="plan" style="--d:0">
+        <div class="name"><h3><span data-l="fr">Scène</span><span data-l="en" lang="en">Scene</span></h3></div>
+        <p class="price"><span class="from"><span data-l="fr">à partir de</span><span data-l="en" lang="en">from</span></span><span class="amt"><span data-l="fr">750&#8239;000</span><span data-l="en" lang="en">750,000</span><small>FCFA</small></span></p>
+        <div>
+          <p class="desc"><span data-l="fr">Un site d’une page avec une scène 3D d’ouverture.</span><span data-l="en" lang="en">A one-page site with a 3D opening scene.</span></p>
+          <p class="det"><span data-l="fr">Une scène de 6&nbsp;secondes au rythme du défilement · Jusqu’à 5&nbsp;sections · Version téléphone légère et soignée · Livré en 2&nbsp;semaines</span><span data-l="en" lang="en">One 6-second scene that moves as you scroll · Up to 5 sections · A light, polished phone version · Delivered in 2 weeks</span></p>
+        </div>
+        <a class="btn ghost" href="#start" data-pkg="scene"><span data-l="fr">Choisir</span><span data-l="en" lang="en">Choose</span></a>
+      </article>
+      <article class="plan" style="--d:1">
+        <div class="name"><span class="tag"><span data-l="fr">Notre conseil</span><span data-l="en" lang="en">Our pick</span></span><h3><span data-l="fr">Parcours</span><span data-l="en" lang="en">Journey</span></h3></div>
+        <p class="price"><span class="amt"><span data-l="fr">1&#8239;500&#8239;000</span><span data-l="en" lang="en">1,500,000</span><small>FCFA</small></span></p>
+        <div>
+          <p class="desc"><span data-l="fr">Plusieurs scènes enchaînées en un seul voyage.</span><span data-l="en" lang="en">Several scenes joined into one journey.</span></p>
+          <p class="det"><span data-l="fr">15&nbsp;à&nbsp;20&nbsp;secondes de voyage · Jusqu’à 8&nbsp;sections · Bilingue français et anglais · Livré en 3&nbsp;à&nbsp;4&nbsp;semaines</span><span data-l="en" lang="en">A journey of 15 to 20 seconds · Up to 8 sections · French and English · Delivered in 3 to 4 weeks</span></p>
+        </div>
+        <a class="btn primary" href="#start" data-pkg="journey"><span data-l="fr">Choisir</span><span data-l="en" lang="en">Choose</span></a>
+      </article>
+      <article class="plan" style="--d:2">
+        <div class="name"><h3><span data-l="fr">Sur mesure</span><span data-l="en" lang="en">Custom</span></h3></div>
+        <p class="price"><span class="amt"><span data-l="fr">2&#8239;900&#8239;000</span><span data-l="en" lang="en">2,900,000</span><small>FCFA</small></span></p>
+        <div>
+          <p class="desc"><span data-l="fr">Un site complet de plusieurs pages, chacune avec sa scène.</span><span data-l="en" lang="en">A full multi-page site, each page with its own scene.</span></p>
+          <p class="det"><span data-l="fr">Une scène par page · Pages supplémentaires sur devis · Bilingue français et anglais · Livré en 5&nbsp;à&nbsp;6&nbsp;semaines</span><span data-l="en" lang="en">One scene per page · Extra pages priced on request · French and English · Delivered in 5 to 6 weeks</span></p>
+        </div>
+        <a class="btn ghost" href="#start" data-pkg="custom"><span data-l="fr">Choisir</span><span data-l="en" lang="en">Choose</span></a>
+      </article>
+    </div>
+    <p class="shared rv"><span data-l="fr">Dans chaque offre&#8239;: domaine et hébergement ouverts à votre nom, deux séries de retouches, 30&nbsp;jours de corrections offertes. L’hébergement se paie à part, directement à l’hébergeur. Acompte de 50&#8239;%, le reste à la mise en ligne, par Wave, Orange Money, MTN MoMo ou virement.</span><span data-l="en" lang="en">Every package includes: domain and hosting set up in your name, two rounds of changes, 30 days of free fixes. Hosting is paid separately, straight to the host. 50% deposit, the rest at launch, by Wave, Orange Money, MTN MoMo, or bank transfer.</span></p>
+  </div>
+</section>
+
+<section class="sec cream method" id="methode">
+  <div class="wrap">
+    <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">La méthode</span><span data-l="en" lang="en">The method</span></p>
+    <h2 class="rv" style="--d:1"><span data-l="fr">Trois étapes. <span class="em">Une date.</span></span><span data-l="en" lang="en">Three steps. <span class="em">One date.</span></span></h2>
+    <div class="grid">
+      <div class="steps">
+        <div class="step rv" style="--d:0"><p class="num">01</p><div><h3><span data-l="fr">On écoute.</span><span data-l="en" lang="en">We listen.</span></h3><p><span data-l="fr">Un appel de 20 minutes sur WhatsApp. On vous envoie une première image de votre scène, offerte.</span><span data-l="en" lang="en">A 20-minute WhatsApp call. We send you a first image of your scene, free.</span></p></div></div>
+        <div class="step rv" style="--d:1"><p class="num">02</p><div><h3><span data-l="fr">On crée votre scène.</span><span data-l="en" lang="en">We make your scene.</span></h3><p><span data-l="fr">Vous regardez le film d’ouverture et vous le validez avant qu’on construise le reste.</span><span data-l="en" lang="en">You watch the opening film and approve it before we build the rest.</span></p></div></div>
+        <div class="step rv" style="--d:2"><p class="num">03</p><div><h3><span data-l="fr">On met en ligne.</span><span data-l="en" lang="en">We go live.</span></h3><p><span data-l="fr">À la date prévue, rapide sur téléphone, à votre nom.</span><span data-l="en" lang="en">On the agreed date, fast on phones, in your name.</span></p></div></div>
+      </div>
+      <div class="figs">
+        <div class="fig rv" style="--d:1"><p class="n"><span class="count" data-to="21" id="figPage">21</span><small><span data-l="fr">Ko</span><span data-l="en" lang="en">KB</span></small></p><p class="k"><span data-l="fr">de code pour toute cette page</span><span data-l="en" lang="en">of code for this whole page</span></p></div>
+        <div class="fig rv" style="--d:2"><p class="n"><span class="count" data-to="856" id="figPhone">856</span><small><span data-l="fr">Ko</span><span data-l="en" lang="en">KB</span></small></p><p class="k"><span data-l="fr">pour le film sur téléphone</span><span data-l="en" lang="en">for the phone film</span></p></div>
+        <p class="note rv" style="--d:3"><span data-l="fr">Sur téléphone, le film est une version verticale allégée de moins de 1&nbsp;Mo&#8239;: fluide, et léger sur le forfait.</span><span data-l="en" lang="en">On phones, the film is a lighter vertical cut under 1&nbsp;MB: smooth, and easy on the data plan.</span></p>
+        <p class="live rv" style="--d:4" id="liveLoad" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cream faq" id="questions">
+  <div class="wrap grid">
+    <div class="head">
+      <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">Questions</span><span data-l="en" lang="en">FAQ</span></p>
+      <h2 class="rv" style="--d:1"><span data-l="fr">Vos <span class="em">questions.</span></span><span data-l="en" lang="en">Your <span class="em">questions.</span></span></h2>
+    </div>
+    <div class="list">
+      <details class="rv" style="--d:0"><summary><span><span data-l="fr">Est-ce que ça marche sur téléphone&#8239;?</span><span data-l="en" lang="en">Does it work on phones?</span></span><span class="plus" aria-hidden="true"></span></summary>
+        <p class="a"><span data-l="fr">Oui. Sur téléphone, le film est tourné à la verticale et pèse moins de 1&nbsp;Mo. Il reste fluide, charge vite et consomme peu de données. Si un téléphone ne peut pas le lire, une image fixe prend sa place.</span><span data-l="en" lang="en">Yes. On phones, the film is shot vertically and weighs under 1&nbsp;MB. It stays smooth, loads fast, and uses little data. If a phone can’t play it, a still image takes its place.</span></p></details>
+      <details class="rv" style="--d:1"><summary><span><span data-l="fr">Qui possède le site&#8239;?</span><span data-l="en" lang="en">Who owns the site?</span></span><span class="plus" aria-hidden="true"></span></summary>
+        <p class="a"><span data-l="fr">Vous. Le domaine et l’hébergement sont à votre nom dès le début, et vous recevez tous les fichiers. Si un jour vous partez, vous partez avec tout.</span><span data-l="en" lang="en">You do. The domain and hosting are in your name from the start, and you get every file. If you ever leave, you leave with everything.</span></p></details>
+      <details class="rv" style="--d:2"><summary><span><span data-l="fr">Combien de temps ça prend&#8239;?</span><span data-l="en" lang="en">How long does it take?</span></span><span class="plus" aria-hidden="true"></span></summary>
+        <p class="a"><span data-l="fr">Deux semaines pour une Scène, trois à quatre pour un Parcours, cinq à six pour du Sur mesure. La date est écrite dans le contrat.</span><span data-l="en" lang="en">Two weeks for a Scene, three to four for a Journey, five to six for Custom. The date is written in the contract.</span></p></details>
+      <details class="rv" style="--d:3"><summary><span><span data-l="fr">Les images sont faites par IA&#8239;?</span><span data-l="en" lang="en">Are the images made with AI?</span></span><span class="plus" aria-hidden="true"></span></summary>
+        <p class="a"><span data-l="fr">Oui, et on le dit. Chaque scène est créée avec des outils d’IA, puis dirigée, choisie et montée par notre studio pour votre marque.</span><span data-l="en" lang="en">Yes, and we say so. Each scene is made with AI tools, then directed, selected, and edited by our studio for your brand.</span></p></details>
+      <details class="rv" style="--d:4"><summary><span><span data-l="fr">Je pourrai modifier le site après&#8239;?</span><span data-l="en" lang="en">Can I change the site later?</span></span><span class="plus" aria-hidden="true"></span></summary>
+        <p class="a"><span data-l="fr">Oui. Vous nous écrivez sur WhatsApp ce que vous voulez changer, en une phrase, et on s’en occupe. Les 30 premiers jours sont offerts.</span><span data-l="en" lang="en">Yes. Send us one sentence on WhatsApp about what you want changed, and we handle it. The first 30 days are free.</span></p></details>
+      <details class="rv" style="--d:5"><summary><span><span data-l="fr">Et l’hébergement, ça coûte combien&#8239;?</span><span data-l="en" lang="en">What does hosting cost?</span></span><span class="plus" aria-hidden="true"></span></summary>
+        <p class="a"><span data-l="fr">L’hébergement se paie à part, directement à l’hébergeur, à votre nom. Comptez quelques milliers de francs CFA par mois. On vous aide à choisir.</span><span data-l="en" lang="en">Hosting is paid separately, straight to the host, in your name. Expect a few thousand CFA francs a month. We help you choose.</span></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark start" id="start">
+  <img class="start-bg" src="assets/start-bg.jpg" alt="" aria-hidden="true" loading="lazy">
+  <div class="wrap">
+    <div>
+      <p class="kicker rv"><svg class="lay" viewBox="0 0 26 18" aria-hidden="true"><rect class="a" x="0" y="5" width="14" height="12"/><rect class="b" x="0" y="5" width="14" height="12"/><rect x="0" y="5" width="14" height="12"/></svg><span data-l="fr">Démarrer</span><span data-l="en" lang="en">Start</span></p>
+      <h2 class="rv" style="--d:1"><span data-l="fr">Voyons votre marque <span class="em">en relief.</span></span><span data-l="en" lang="en">Let’s give your brand <span class="em">depth.</span></span></h2>
+      <p class="lede rv" style="--d:2"><span data-l="fr">Dites-nous en deux lignes ce que fait votre entreprise. On vous répond sur WhatsApp avec une première image de votre scène d’ouverture, offerte.</span><span data-l="en" lang="en">Tell us in two lines what your business does. We reply on WhatsApp with a first image of your opening scene, free.</span></p>
+      <p class="direct rv" style="--d:3"><span data-l="fr">Ou écrivez-nous directement&#8239;: </span><span data-l="en" lang="en">Or message us directly: </span><a href="https://wa.me/2250575179393" target="_blank" rel="noopener">+225 05 75 17 93 93</a></p>
+    </div>
+    <form class="form" id="leadForm" novalidate>
+      <div class="field">
+        <label for="fName"><span data-l="fr">Votre nom</span><span data-l="en" lang="en">Your name</span></label>
+        <input id="fName" name="name" type="text" autocomplete="name" placeholder="Aya Koné" aria-describedby="fNameErr">
+        <p class="err" id="fNameErr" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="fBiz"><span data-l="fr">Votre entreprise</span><span data-l="en" lang="en">Your business</span></label>
+        <input id="fBiz" name="business" type="text" autocomplete="organization" placeholder="Maison Koné">
+      </div>
+      <div class="field">
+        <label for="fWhat"><span data-l="fr">Ce que vous vendez</span><span data-l="en" lang="en">What you sell</span></label>
+        <input id="fWhat" name="what" type="text" data-ph-fr="Des bijoux faits main à Cocody" data-ph-en="Handmade jewelry in Cocody" placeholder="Des bijoux faits main à Cocody">
+      </div>
+      <div class="field">
+        <label for="fPkg"><span data-l="fr">L’offre qui vous intéresse</span><span data-l="en" lang="en">The package you’re interested in</span></label>
+        <select id="fPkg" name="package">
+          <option value="scene" data-fr="Scène" data-en="Scene">Scène</option>
+          <option value="journey" data-fr="Parcours" data-en="Journey">Parcours</option>
+          <option value="custom" data-fr="Sur mesure" data-en="Custom">Sur mesure</option>
+          <option value="unsure" data-fr="Je ne sais pas encore" data-en="Not sure yet" selected>Je ne sais pas encore</option>
+        </select>
+      </div>
+      <button class="btn primary" type="submit"><span data-l="fr">Envoyer sur WhatsApp</span><span data-l="en" lang="en">Send on WhatsApp</span> <span class="arr" aria-hidden="true">→</span></button>
+      <p class="ok" id="formOk" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="Studio Web 3D">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ring1" x="19" y="4" width="23" height="23" rx="2" fill="none" stroke-width="1.6"/><rect class="ring2" x="12.5" y="11.5" width="23" height="23" rx="2" fill="none" stroke-width="1.6"/><rect x="6" y="19" width="23" height="23" rx="2" fill="#C9955A"/></svg>
+        <span>Studio Web 3D</span>
+      </a>
+      <p class="tag"><span data-l="fr">On met votre marque en relief · Abidjan, Côte d’Ivoire</span><span data-l="en" lang="en">We give your brand depth · Abidjan, Côte d’Ivoire</span></p>
+    </div>
+    <a class="wa" href="https://wa.me/2250575179393" target="_blank" rel="noopener">WhatsApp +225 05 75 17 93 93</a>
+    <div class="small">
+      <span><span data-l="fr">Les images et vidéos de ce site sont générées par IA, puis dirigées par notre studio.</span><span data-l="en" lang="en">The images and videos on this site are AI generated, then directed by our studio.</span></span>
+      <span>© 2026 Studio Web 3D</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const smoothstep = (p, e0, e1) => { const t = clamp((p - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); };
+const root = document.documentElement;
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ---------- language ---------- */
+const META = {
+  fr: { title: 'Studio Web 3D · On met votre marque en relief', desc: "Des sites web en 3D où vos clients entrent au lieu de défiler. Prix fixe, date fixe, et tout est à votre nom dès le premier jour. Studio Web 3D, Abidjan." },
+  en: { title: 'Studio Web 3D · We give your brand depth', desc: '3D websites your customers step into instead of scrolling past. Fixed price, fixed date, and everything is in your name from day one. Studio Web 3D, Abidjan.' }
+};
+let lang = 'fr';
+function setLang(l, save) {
+  lang = l === 'en' ? 'en' : 'fr';
+  root.lang = lang; root.dataset.lang = lang;
+  document.title = META[lang].title;
+  const md = $('meta[name="description"]'); if (md) md.content = META[lang].desc;
+  $$('[data-set-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setLang === lang)));
+  $$('[data-ph-fr]').forEach(i => { i.placeholder = i.dataset['ph' + (lang === 'fr' ? 'Fr' : 'En')]; });
+  $$('option[data-fr]').forEach(o => { o.textContent = o.dataset[lang]; });
+  if (save) { try { localStorage.setItem('sw3d-lang', lang); } catch (e) {} }
+}
+let saved = null;
+try { saved = localStorage.getItem('sw3d-lang'); } catch (e) {}
+$$('[data-set-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang, true)));
+
+/* ---------- split text (seeded, once) ---------- */
+function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+$$('.split').forEach((el, n) => {
+  const lines = el.textContent.replace(/[ \t\n]+/g, ' ').trim().split('|').map(s => s.trim());
+  const text = lines.join(' ');
+  const fx = el.dataset.fx, em = el.dataset.em || '';
+  const r = rng(1009 + n * 7919);
+  el.textContent = '';
+  const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = text; el.appendChild(sr);
+  const vis = document.createElement('span'); vis.className = 'vis'; vis.setAttribute('aria-hidden', 'true');
+  const totalWords = text.split(' ').length;
+  let gw = 0;
+  lines.forEach((line, li) => {
+    const box = document.createElement('span'); box.className = 'ln'; box.style.setProperty('--i', li);
+    if (fx === 'layers') box.style.setProperty('--th', (li * 0.22).toFixed(3));
+    if (em && line === em) box.classList.add('em');
+    vis.appendChild(box);
+    const words = line.split(' ');
+    words.forEach((w, wi) => {
+      const ws = document.createElement('span'); ws.className = 'w';
+      if (fx === 'rise' || fx === 'approach') ws.style.setProperty('--th', (gw / Math.max(1, totalWords - 1) * 0.5 + r() * 0.04).toFixed(3));
+      ws.textContent = w;
+      box.appendChild(ws); gw++;
+      if (wi < words.length - 1) box.appendChild(document.createTextNode(' '));
+    });
+  });
+  el.appendChild(vis);
+});
+
+/* ---------- hero scrub ---------- */
+const PORTRAIT = matchMedia('(orientation: portrait) and (max-width: 1024px)');
+let VIDEO_URL = 'assets/hero-scrub.mp4', POSTER_URL = 'assets/hero-poster.jpg', VIDEO_BYTES = 4374378;
+function pickSource() { if (PORTRAIT.matches) { VIDEO_URL = 'assets/hero-scrub-m.mp4'; POSTER_URL = 'assets/hero-poster-m.jpg'; VIDEO_BYTES = 867641; } }
+const RANGE_VH = 480;
+const EDGE = 20 / RANGE_VH;
+const hero = $('#top'), stage = $('#stage'), video = $('#hero'), poster = $('#poster');
+const cue = $('#cue'), ringFill = $('#ringFill'), loader = $('#loader');
+const bands = $$('.band').map((el, i, arr) => ({ el, a: +el.dataset.a, b: +el.dataset.b, ramp: el.dataset.ramp ? +el.dataset.ramp : null, first: i === 0, last: i === arr.length - 1, op: -1, k: -1, on: null }));
+let heroTop = 0, heroRange = 1;
+function measureHero() { heroTop = hero.offsetTop; heroRange = Math.max(1, hero.offsetHeight - innerHeight); }
+const heroProgress = () => clamp((scrollY - heroTop) / heroRange, 0, 1);
+
+let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, cueOp = -1;
+let seekBusy = false, pendingTime = null;
+function requestSeek(t) {
+  if (!video.duration || !isFinite(video.duration)) return;
+  t = clamp(t, 0, video.duration - 0.04);
+  if (seekBusy) { pendingTime = t; return; }
+  seekBusy = true;
+  video.currentTime = t;
+}
+video.addEventListener('seeked', () => {
+  seekBusy = false;
+  if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); }
+});
+video.addEventListener('error', () => { seekBusy = false; pendingTime = null; failVideo(); });
+
+function updateCaptions(p) {
+  for (const B of bands) {
+    const f = Math.min(EDGE, (B.b - B.a) / 3);
+    const op = (B.first ? 1 : smoothstep(p, B.a, B.a + f)) * (B.last ? 1 : 1 - smoothstep(p, B.b - f, B.b));
+    let k = clamp((p - B.a) / (B.ramp || Math.min(EDGE, (B.b - B.a) * 0.35)), 0, 1);
+    if (B.first) k = Math.max(k, loadK);
+    if (Math.abs(op - B.op) > 0.004 || (op === 0) !== (B.op === 0) || (op === 1) !== (B.op === 1)) { B.op = op; B.el.style.opacity = op.toFixed(3); }
+    if (Math.abs(k - B.k) > 0.008 || (k === 1 && B.k !== 1) || (k === 0 && B.k !== 0)) { B.k = k; B.el.style.setProperty('--k', k.toFixed(3)); }
+    const on = op > 0.6;
+    if (on !== B.on) { B.on = on; B.el.classList.toggle('on', on); }
+  }
+  const c = 1 - smoothstep(p, 0.015, 0.07);
+  if (Math.abs(c - cueOp) > 0.01 || (c === 0 && cueOp !== 0)) { cueOp = c; cue.style.opacity = c.toFixed(2); }
+}
+
+function tick(now) {
+  const dt = Math.min(100, now - (lastTick || now));
+  lastTick = now;
+  const k = 0.16;
+  shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
+  if (Math.abs(target - shown) < 0.0005) { shown = target; rafId = null; lastTick = 0; }
+  else rafId = requestAnimationFrame(tick);
+  if (video.duration) requestSeek(shown * video.duration);
+  updateCaptions(shown);
+}
+function onScroll() {
+  target = heroProgress();
+  if (rafId === null && heroOnScreen) rafId = requestAnimationFrame(tick);
+}
+new IntersectionObserver(es => { heroOnScreen = es[0].isIntersecting; if (heroOnScreen && scrubOn) onScroll(); }).observe(hero);
+
+let heroInit = false;
+function initHeroOnce() {
+  if (heroInit) return; heroInit = true;
+  pickSource();
+  poster.style.backgroundImage = "url('" + POSTER_URL + "')";
+  let started = false;
+  const go = () => { if (started) return; started = true; loadHeroBlob().catch(failVideo); };
+  const img = new Image(); img.onload = go; img.onerror = go; img.src = POSTER_URL;
+  setTimeout(go, 4000);
+}
+async function loadHeroBlob() {
+  const ctrl = new AbortController();
+  let watchdog = setTimeout(() => ctrl.abort(), 20000);
+  const res = await fetch(VIDEO_URL, { priority: 'low', signal: ctrl.signal });
+  if (!res.ok || !res.body) throw new Error('video ' + res.status);
+  const total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES;
+  const reader = res.body.getReader();
+  const chunks = []; let got = 0, lastRing = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    clearTimeout(watchdog); watchdog = setTimeout(() => ctrl.abort(), 20000);
+    chunks.push(value); got += value.length;
+    const frac = Math.min(1, got / total), now = performance.now();
+    if (now - lastRing > 100 || frac === 1) { lastRing = now; ringFill.setAttribute('stroke-dashoffset', Math.round(126 * (1 - frac))); }
+  }
+  clearTimeout(watchdog);
+  ringFill.setAttribute('stroke-dashoffset', '0');
+  video.src = URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' }));
+  video.load();
+  video.addEventListener('canplay', () => {
+    seekBusy = false; pendingTime = null;
+    requestSeek(heroProgress() * video.duration);
+    stage.classList.add('video-ready');
+    loader.classList.add('done');
+    cue.classList.add('loaded');
+  }, { once: true });
+}
+function failVideo() { stage.classList.add('video-failed'); loader.classList.add('done'); cue.classList.add('failed'); }
+
+function rampLoad() {
+  const t0 = performance.now();
+  const step = now => {
+    const t = clamp((now - t0) / 1600, 0, 1);
+    loadK = 1 - Math.pow(1 - t, 3);
+    updateCaptions(shown);
+    if (t < 1 && scrubOn) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const GATES = [
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+let scrubOn = false;
+function enableScrub() {
+  if (scrubOn) return; scrubOn = true;
+  measureHero();
+  initHeroOnce();
+  addEventListener('scroll', onScroll, { passive: true });
+  bands.forEach(b => { b.op = -1; b.k = -1; b.on = null; });
+  cueOp = -1;
+  unpinFinalStates();
+  shown = target = heroProgress();
+  if (loadK < 1) rampLoad();
+  updateCaptions(shown);
+  onScroll();
+}
+function disableScrub() {
+  if (!scrubOn) return; scrubOn = false;
+  removeEventListener('scroll', onScroll);
+  if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+}
+function applyHeroMode() {
+  if (GATES.some(q => matchMedia(q).matches)) disableScrub(); else enableScrub();
+}
+const MQLS = GATES.map(q => matchMedia(q));
+MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
+
+/* ---------- brass line, zones, nav (both modes) ---------- */
+const bead = $('.ll .bead'), readEl = $('.ll .read'), startSec = $('#start'), essaiSec = $('#essai');
+let docRange = 1, lastY = -1, lastRead = '', lastReadAt = 0, zone = null, llQueued = false;
+function measureDoc() { docRange = Math.max(1, document.documentElement.scrollHeight - innerHeight); }
+function drawLine() {
+  llQueued = false;
+  const pr = clamp(scrollY / docRange, 0, 1);
+  const y = Math.round(18 + pr * (innerHeight - 36));
+  if (y !== lastY) { lastY = y; bead.style.transform = 'translate3d(0,' + y + 'px,0)'; }
+  const now = performance.now();
+  if (now - lastReadAt > 100) {
+    const txt = 'RELIEF ' + String(Math.round(pr * 40)).padStart(2, '0') + ' / 40';
+    if (txt !== lastRead) { lastRead = txt; lastReadAt = now; readEl.textContent = txt; }
+  }
+  const heroEnd = hero.offsetTop + hero.offsetHeight, yy = scrollY + 40;
+  const inEssai = yy >= essaiSec.offsetTop && yy < essaiSec.offsetTop + essaiSec.offsetHeight;
+  const z = (yy < heroEnd || yy >= startSec.offsetTop || inEssai) ? 'dark' : 'cream';
+  if (z !== zone) { zone = z; document.body.classList.toggle('zone-cream', z === 'cream'); }
+}
+addEventListener('scroll', () => { if (!llQueued) { llQueued = true; requestAnimationFrame(drawLine); } }, { passive: true });
+addEventListener('resize', () => { measureHero(); measureDoc(); lastY = -1; drawLine(); if (scrubOn) onScroll(); });
+new ResizeObserver(() => { measureDoc(); measureHero(); }).observe(document.body);
+
+/* ---------- motes ---------- */
+(() => {
+  const box = $('.env .motes'); const r = rng(42);
+  for (let i = 0; i < 14; i++) {
+    const m = document.createElement('span'); m.className = 'mote';
+    m.style.left = (8 + r() * 84).toFixed(1) + '%';
+    m.style.top = (45 + r() * 60).toFixed(1) + '%';
+    m.style.animationDuration = (22 + r() * 26).toFixed(1) + 's';
+    m.style.animationDelay = (-r() * 40).toFixed(1) + 's';
+    box.appendChild(m);
+  }
+})();
+
+/* ---------- entrances, living elements, pause ---------- */
+const settleLater = el => setTimeout(() => el.classList.add('settled'), 2800);
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); settleLater(e.target); io.unobserve(e.target); }
+}), { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+$$('.sec, .prow').forEach(el => io.observe(el));
+const liveIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('live', e.isIntersecting)));
+$$('.sec').forEach(el => liveIO.observe(el));
+document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
+
+/* ---------- counters ---------- */
+function runCount(el) {
+  const to = +el.dataset.to; if (!to) { el.textContent = '0'; return; }
+  if (RM.matches) { el.textContent = String(to); return; }
+  const t0 = performance.now(); let last = '';
+  const step = now => {
+    const t = clamp((now - t0) / 1400, 0, 1), v = Math.round(to * (1 - Math.pow(1 - t, 3)));
+    const s = String(v); if (s !== last) { last = s; el.textContent = s; }
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const cIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { runCount(e.target); cIO.unobserve(e.target); } }), { threshold: 0.6 });
+$$('.count').forEach(el => cIO.observe(el));
+addEventListener('load', () => {
+  setTimeout(() => {
+    const nav0 = performance.getEntriesByType('navigation')[0];
+    const ms = nav0 && nav0.loadEventEnd > 0 ? nav0.loadEventEnd : 0;
+    if (!ms) return;
+    const s = (ms / 1000).toFixed(1);
+    $('#liveLoad').innerHTML = '<span data-l="fr">Cette page s’est chargée en ' + s.replace('.', ',') + ' s sur votre appareil.</span><span data-l="en" lang="en">This page loaded in ' + s + ' s on your device.</span>';
+  }, 0);
+});
+
+/* ---------- hold: give the page depth ---------- */
+const tryS = $('#essai'), holdStage = $('#holdStage'), holdBtn = $('#holdBtn'), holdFill = $('#holdFill'), replay = $('#replay');
+let hp = 0, holding = false, holdRaf = null, holdLast = 0, hpShown = -1, done = false;
+function paintHold() {
+  if (Math.abs(hp - hpShown) < 0.004 && hp !== 0 && hp !== 1) return;
+  hpShown = hp;
+  holdStage.style.setProperty('--p', hp.toFixed(3));
+  holdFill.setAttribute('stroke-dashoffset', (126 * (1 - hp)).toFixed(1));
+}
+function holdLoop(now) {
+  const dt = Math.min(100, now - (holdLast || now)); holdLast = now;
+  if (holding) hp = Math.min(1, hp + dt / 1700);
+  else hp = Math.max(0, hp - dt / 1100 * (0.35 + hp));
+  paintHold();
+  if (hp >= 1 && !done) finishHold();
+  if ((holding && hp < 1) || (!holding && hp > 0 && !done)) holdRaf = requestAnimationFrame(holdLoop);
+  else { holdRaf = null; holdLast = 0; }
+}
+function kickHold() { if (holdRaf === null) holdRaf = requestAnimationFrame(holdLoop); }
+function finishHold() { done = true; holding = false; hp = 1; paintHold(); holdBtn.classList.remove('holding'); tryS.classList.add('done'); }
+function startHold(e) { if (done) return; if (e && e.cancelable) e.preventDefault(); holding = true; holdBtn.classList.add('holding'); kickHold(); }
+function endHold() { if (!holding) return; holding = false; holdBtn.classList.remove('holding'); kickHold(); }
+holdBtn.addEventListener('pointerdown', e => { try { holdBtn.setPointerCapture(e.pointerId); } catch (x) {} startHold(e); });
+['pointerup', 'pointercancel', 'lostpointercapture'].forEach(t => holdBtn.addEventListener(t, endHold));
+holdBtn.addEventListener('contextmenu', e => e.preventDefault());
+holdBtn.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); startHold(); } });
+holdBtn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') endHold(); });
+replay.addEventListener('click', () => { if (RM.matches) return; done = false; tryS.classList.remove('done'); hp = 1; hpShown = -1; kickHold(); });
+
+/* ---------- reduced motion, live in both directions ---------- */
+function pinToFinalStates() {
+  done = true; hp = 1; hpShown = -1; paintHold(); tryS.classList.add('done');
+  $$('.count').forEach(el => { el.textContent = el.dataset.to; });
+  $$('.sec, .prow').forEach(el => el.classList.add('in', 'settled'));
+}
+function unpinFinalStates() {}
+RM.addEventListener('change', e => { if (e.matches) pinToFinalStates(); else applyHeroMode(); });
+
+/* ---------- packages preselect + WhatsApp form ---------- */
+const form = $('#leadForm'), fName = $('#fName'), fBiz = $('#fBiz'), fWhat = $('#fWhat'), fPkg = $('#fPkg'), err = $('#fNameErr'), ok = $('#formOk');
+$$('[data-pkg]').forEach(a => a.addEventListener('click', () => { fPkg.value = a.dataset.pkg; }));
+fName.addEventListener('input', () => { err.textContent = ''; });
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = fName.value.trim();
+  if (!name) { err.textContent = lang === 'fr' ? 'Ajoutez votre nom pour continuer.' : 'Add your name to continue.'; fName.focus(); return; }
+  const pkg = fPkg.options[fPkg.selectedIndex].dataset[lang];
+  const biz = fBiz.value.trim(), what = fWhat.value.trim();
+  const lines = lang === 'fr'
+    ? ['Bonjour Studio Web 3D, je m’appelle ' + name + '.', biz && 'Mon entreprise : ' + biz + '.', what && 'Ce que nous vendons : ' + what + '.', (fPkg.value === 'unsure' ? 'Je ne sais pas encore quelle offre choisir.' : 'Offre qui m’intéresse : ' + pkg + '.'), 'J’aimerais recevoir ma première image offerte.']
+    : ['Hello Studio Web 3D, my name is ' + name + '.', biz && 'My business: ' + biz + '.', what && 'What we sell: ' + what + '.', (fPkg.value === 'unsure' ? 'I’m not sure which package yet.' : 'Package I’m interested in: ' + pkg + '.'), 'I’d like to get my free first image.'];
+  const url = 'https://wa.me/2250575179393?text=' + encodeURIComponent(lines.filter(Boolean).join('\n'));
+  ok.textContent = lang === 'fr' ? 'WhatsApp s’ouvre avec votre message. Il ne reste qu’à appuyer sur Envoyer.' : 'WhatsApp is opening with your message. Just press Send.';
+  const w = window.open(url, '_blank', 'noopener');
+  if (!w) location.href = url;
+});
+
+/* ---------- boot ---------- */
+setLang(saved || 'fr', false);
+measureDoc();
+applyHeroMode();
+if (RM.matches) pinToFinalStates();
+drawLine();
+})();
+</script>
+</body>
+</html>
